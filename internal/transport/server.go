@@ -25,6 +25,7 @@ func NewServer(ctx context.Context, logger *zerolog.Logger, cfg *config.Config, 
 		svcAddress: svcAddress,
 	}
 
+	server.router.NotFoundHandler = NewNoFoundHandler(logger)
 	server.router.HandleFunc("/health", server.healthCheck).Methods(http.MethodGet)
 	server.router.HandleFunc("/v1/address", server.addressHandlerV1).Methods(http.MethodGet)
 
