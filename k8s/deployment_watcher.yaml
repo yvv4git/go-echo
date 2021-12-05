@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: watcher
+  labels:
+    app: watcher
+    env: prod
+    owner: EliseevVladimir
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      project: watcher
+  template:
+    metadata:
+      labels:
+        project: watcher
+    spec:
+      containers:
+        - name: watcher
+          image: praqma/network-multitool
+          ports:
+            - containerPort: 80
+            - containerPort: 80

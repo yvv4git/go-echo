@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: watcher
+  labels:
+    name: watcher
+    owner: EliseevVladimir
+spec:
+  containers:
+    - image: praqma/network-multitool
+      name: watcher

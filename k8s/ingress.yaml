@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ic
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: echo.local
+      http:
+        paths:
+          - path: /goapp(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: echo
+                port:
+                  number: 8080
+          - path: /watcher
+            pathType: Prefix
+            backend:
+              service:
+                name: watcher
+                port:
+                  number: 1234

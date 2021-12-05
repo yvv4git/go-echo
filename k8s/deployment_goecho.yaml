@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo
+  labels:
+    app: goecho
+    env: prod
+    owner: EliseevVladimir
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      project: echo
+  template:
+    metadata:
+      labels:
+        project: echo
+    spec:
+      containers:
+        - name: echo
+          image: yvv4docker/goecho:v1.0.0
+          ports:
+            - containerPort: 8080

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: echo
+  labels:
+    env: prod
+    owner: EliseevVladimir
+spec:
+  selector:
+    project: echo   # selector for pods
+  ports:
+    - name: echo-listner
+      protocol: TCP
+      port: 8080        # port on LoadBalancer
+      targetPort: 8080  # port on POD
+  type: LoadBalancer
